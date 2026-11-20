@@ -14,8 +14,16 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+      - uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.4'
+      - name: Validate plugin files
+        run: |
+          php -l src/AdminControllPlugin.php
+          php -l src/Filament/Admin/Pages/Controll.php
+          jq empty plugin.json
       - name: Build plugin archive
-        run: zip -r ADMIN-Controll.zip plugin.json src resources
+        run: zip -r ADMIN-Controll.zip plugin.json src resources LICENSE
       - name: Commit plugin archive
         run: |
           git config user.name "github-actions[bot]"
