@@ -15,7 +15,7 @@ class Controll extends Page
 {
     protected static ?string $slug = 'controll';
 
-    protected static string $view = 'admin-controll::dashboard';
+    protected string $view = 'admin-controll::dashboard';
 
     protected static string|\BackedEnum|null $navigationIcon = 'heroicon-o-command-line';
 
