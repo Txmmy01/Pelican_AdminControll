@@ -23,7 +23,12 @@ jobs:
           php -l src/Filament/Admin/Pages/Controll.php
           jq empty plugin.json
       - name: Build plugin archive
-        run: zip -r ADMIN-Controll.zip plugin.json src resources LICENSE
+        run: |
+          mkdir -p package/admin-controll
+          cp plugin.json LICENSE package/admin-controll/
+          cp -R src resources package/admin-controll/
+          cd package
+          zip -r ../ADMIN-Controll.zip admin-controll
       - name: Commit plugin archive
         run: |
           git config user.name "github-actions[bot]"
