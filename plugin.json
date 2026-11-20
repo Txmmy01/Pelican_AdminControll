@@ -1,0 +1,15 @@
+{
+    "id": "admin-controll",
+    "name": "ADMIN Controll",
+    "author": "Txmmy01",
+    "version": "1.0.0",
+    "description": "Zentrale Verwaltung ausgewählter Pelican-Server mit gemeinsamer Live-Konsole.",
+    "category": "plugin",
+    "namespace": "Txmmy01\\AdminControll",
+    "class": "AdminControllPlugin",
+    "panels": [
+        "admin"
+    ],
+    "panel_version": "1.0.0-rc.3",
+    "api_version": 1
+}
