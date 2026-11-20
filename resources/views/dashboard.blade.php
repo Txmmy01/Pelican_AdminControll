@@ -40,7 +40,7 @@
             <div class="grid grid-cols-1 gap-3 md:grid-cols-2 xl:grid-cols-3">
                 @foreach($this->getServers() as $server)
                     <label class="flex cursor-pointer items-center gap-3 rounded-xl border border-gray-200 p-3 transition hover:border-primary-400 dark:border-gray-700">
-                        <input type="checkbox" value="{{ $server->id }}" wire:model.live="selectedServers" class="rounded border-gray-300 text-primary-600 focus:ring-primary-500">
+                        <input type="checkbox" value="{{ $server->id }}" wire:model.live="selectedServers" data-admin-controll-server="{{ $server->id }}" class="rounded border-gray-300 text-primary-600 focus:ring-primary-500">
                         <span class="min-w-0 flex-1">
                             <span class="block truncate text-sm font-semibold">{{ $server->name }}</span>
                             <span class="block truncate text-xs text-gray-500 dark:text-gray-400">{{ $server->node?->name ?? 'Node unbekannt' }} · {{ $server->uuid_short }}</span>
@@ -188,8 +188,8 @@
                 return;
             }
 
-            const selected = @js($selectedServers);
-            const ids = new Set(selected.map(String));
+            const selected = Array.from(document.querySelectorAll('[data-admin-controll-server]:checked')).map((element) => String(element.dataset.adminControllServer));
+            const ids = new Set(selected);
             let sent = 0;
 
             connections.forEach((connection) => {
